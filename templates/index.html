@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Message Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Secret Message Tool</h1>
+        <form method="POST">
+            <label for="message">Enter your message:</label>
+            <input type="text" id="message" name="message" required>
+            
+            <label for="shift">Shift value (1-25):</label>
+            <input type="number" id="shift" name="shift" min="1" max="25" required>
+            
+            <div class="buttons">
+                <button type="submit" name="action" value="encode">Encode</button>
+                <button type="submit" name="action" value="decode">Decode</button>
+            </div>
+            
+            <label class="checkbox">
+                <input type="checkbox" name="hide"> Hide in a fake sentence (encode only)
+            </label>
+        </form>
+
+        {% if result %}
+            <div class="result">
+                <h3>{{ result }}</h3>
+                {% if hidden %}
+                    <p>Hidden: {{ hidden }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
